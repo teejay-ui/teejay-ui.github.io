@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tumba II Z.M Kongolo — Cybersecurity Portfolio</title>
+<meta name="description" content="Aspiring SOC Analyst & IT Security Professional based in Kigali, Rwanda. Help desk background transitioning into cybersecurity.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111111;
+    --white: #ffffff;
+    --gray-100: #f5f5f4;
+    --gray-200: #e8e7e5;
+    --gray-400: #a8a7a3;
+    --gray-600: #6b6a67;
+    --gray-800: #3a3937;
+    --accent: #111111;
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* LAYOUT */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-name {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--gray-600);
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 72px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+  .hero-bio {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid var(--black);
+  }
+  .btn-primary:hover { background: var(--gray-800); border-color: var(--gray-800); }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid var(--gray-200);
+  }
+  .btn-secondary:hover { border-color: var(--gray-400); background: var(--gray-100); }
+
+  /* SECTION STRUCTURE */
+  section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 28px;
+  }
+
+  /* PROJECT GRID */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--gray-400);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .project-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .project-type {
+    font-size: 11px;
+    color: var(--gray-400);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .project-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.done { background: #22c55e; }
+  .status-dot.progress { background: #f59e0b; }
+  .status-dot.planned { background: var(--gray-200); border: 1px solid var(--gray-400); }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .skill-group {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+  }
+  .skill-group-title {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gray-800);
+  }
+  .skill-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 9px;
+    color: var(--gray-600);
+  }
+
+  /* CERTS */
+  .cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    transition: border-color 0.15s;
+  }
+  .cert-item:hover { border-color: var(--gray-400); }
+  .cert-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .cert-info { flex: 1; min-width: 0; }
+  .cert-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cert-sub { font-size: 12px; color: var(--gray-400); }
+  .cert-badge {
+    font-size: 11px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-earned {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+  .badge-progress {
+    background: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fde68a;
+  }
+  .badge-planned {
+    background: var(--gray-100);
+    color: var(--gray-400);
+    border: 1px solid var(--gray-200);
+  }
+
+  /* CONTACT */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-item:hover {
+    border-color: var(--gray-400);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .contact-item.placeholder {
+    opacity: 0.45;
+    cursor: default;
+    border-style: dashed;
+  }
+  .contact-item.placeholder:hover {
+    border-color: var(--gray-200);
+    box-shadow: none;
+  }
+  .contact-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-text { flex: 1; }
+  .contact-label { font-size: 14px; font-weight: 500; }
+  .contact-val { font-size: 12px; color: var(--gray-400); }
+  .contact-arrow {
+    font-size: 16px;
+    color: var(--gray-400);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-name { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+  .footer-note { font-size: 12px; color: var(--gray-400); }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .nav-links { gap: 16px; }
+    .hero { padding: 52px 0 48px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .cert-name { white-space: normal; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Tumba II Z.M Kongolo</span>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">Cybersecurity Portfolio</div>
+    <h1>Aspiring SOC Analyst<br>&amp; IT Security Professional</h1>
+    <p class="hero-bio">Help desk background transitioning into cybersecurity. Building hands-on experience in threat detection, log analysis, and security tooling — one lab at a time.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/teejay-ui" target="_blank" rel="noopener" class="btn btn-primary">
+        &#xe624; GitHub
+      </a>
+      <a href="#projects" class="btn btn-secondary">View projects &darr;</a>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">🖥️</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">Home Lab Setup</div>
+        <p class="project-desc">Built a virtual network using VirtualBox with Kali Linux and Windows VMs. Practised Nmap scanning, firewall configuration, and log analysis in an isolated environment.</p>
+        <div class="project-status">
+          <span class="status-dot done"></span> Completed
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">📝</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">TryHackMe Write-ups</div>
+        <p class="project-desc">Completing rooms from the Pre-Security and SOC Level 1 learning paths. Publishing write-ups explaining tools used, commands run, and lessons learned per room.</p>
+        <div class="project-status">
+          <span class="status-dot progress"></span> In progress
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">🔍</div>
+          <span class="project-type">Both</span>
+        </div>
+        <div class="project-title">Nmap Scan Report</div>
+        <p class="project-desc">Network scans against lab VMs with documented open ports and services. Includes a one-page risk assessment with hardening recommendations.</p>
+        <div class="project-status">
+          <span class="status-dot planned"></span> Planned
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">📧</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">Phishing Email Analysis</div>
+        <p class="project-desc">Analysis of real-world phishing samples — examining headers, spoofed senders, suspicious links, and urgency tactics. Documents triage steps a SOC analyst would take.</p>
+        <div class="project-status">
+          <span class="status-dot planned"></span> Planned
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">🔓</div>
+          <span class="project-type">Red team</span>
+        </div>
+        <div class="project-title">Password Cracking Demo</div>
+        <p class="project-desc">Controlled lab exercise using John the Ripper and Hashcat against self-created test hashes. Documents the process and explains the real-world risk of weak passwords.</p>
+        <div class="project-status">
+          <span class="status-dot planned"></span> Planned
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">📊</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">Log Analysis Mini-Project</div>
+        <p class="project-desc">Generated Windows Event Logs in the lab — mixing successful and failed logins. Manually flagged suspicious patterns and produced a short analyst-style report.</p>
+        <div class="project-status">
+          <span class="status-dot planned"></span> Planned
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon-wrap">📋</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">Incident Response Cheat Sheet</div>
+        <p class="project-desc">One-page IR plan applying the standard PICERL framework to a fictional phishing scenario. Demonstrates process knowledge beyond just tooling.</p>
+        <div class="project-status">
+          <span class="status-dot planned"></span> Planned
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">IT &amp; networking</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-check">✓</span> Help desk / IT support</div>
+          <div class="skill-item"><span class="skill-check">✓</span> TCP/IP, DNS, DHCP, VPN</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Linux CLI</div>
+          <div class="skill-item"><span class="skill-check">✓</span> VirtualBox / VM setup</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Security tools</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-check">✓</span> Kali Linux</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Nmap</div>
+          <div class="skill-item"><span class="skill-check">✓</span> John the Ripper</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Wireshark (learning)</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Development</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-check">✓</span> Python</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Git &amp; GitHub</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Bash scripting (learning)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <div class="section-label">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-icon-wrap">🏆</div>
+        <div class="cert-info">
+          <div class="cert-name">Google IT Support Professional Certificate</div>
+          <div class="cert-sub">Google / Coursera</div>
+        </div>
+        <span class="cert-badge badge-earned">Earned</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon-wrap">🔐</div>
+        <div class="cert-info">
+          <div class="cert-name">Google Cybersecurity Certificate</div>
+          <div class="cert-sub">Google / Coursera — audit in progress</div>
+        </div>
+        <span class="cert-badge badge-progress">In progress</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon-wrap">🎯</div>
+        <div class="cert-info">
+          <div class="cert-name">CompTIA Security+ (SY0-701)</div>
+          <div class="cert-sub">Studying via Professor Messer</div>
+        </div>
+        <span class="cert-badge badge-planned">Planned</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-list">
+      <a href="https://github.com/teejay-ui" target="_blank" rel="noopener" class="contact-item">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-text">
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">github.com/teejay-ui</div>
+        </div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <div class="contact-item placeholder">
+        <div class="contact-icon">💼</div>
+        <div class="contact-text">
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">Add your LinkedIn URL</div>
+        </div>
+      </div>
+      <div class="contact-item placeholder">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-text">
+          <div class="contact-label">Email</div>
+          <div class="contact-val">Add your email address</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Tumba II Z.M Kongolo</span>
+    <span class="footer-note">Aspiring SOC Analyst · Kigali, Rwanda</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
