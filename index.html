@@ -205,10 +205,15 @@
     flex: 1;
   }
   .project-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .project-status-left {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 16px;
     font-size: 12px;
     color: var(--gray-400);
   }
@@ -221,6 +226,13 @@
   .status-dot.done { background: #22c55e; }
   .status-dot.progress { background: #f59e0b; }
   .status-dot.planned { background: var(--gray-200); border: 1px solid var(--gray-400); }
+  .project-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--black);
+    border-bottom: 1px solid var(--gray-400);
+  }
+  .project-link:hover { border-color: var(--black); }
 
   /* SKILLS */
   .skills-grid {
@@ -352,15 +364,6 @@
     border-color: var(--gray-400);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
-  .contact-item.placeholder {
-    opacity: 0.45;
-    cursor: default;
-    border-style: dashed;
-  }
-  .contact-item.placeholder:hover {
-    border-color: var(--gray-200);
-    box-shadow: none;
-  }
   .contact-icon {
     width: 38px;
     height: 38px;
@@ -424,10 +427,10 @@
   <div class="hero">
     <div class="hero-eyebrow">Cybersecurity Portfolio</div>
     <h1>Aspiring SOC Analyst<br>&amp; IT Security Professional</h1>
-    <p class="hero-bio">Help desk background transitioning into cybersecurity. Building hands-on experience in threat detection, log analysis, and security tooling — one lab at a time.</p>
+    <p class="hero-bio">IT support background transitioning into cybersecurity. Hands-on experience investigating real attack traffic, reconstructing incidents, and documenting findings the way a SOC analyst would.</p>
     <div class="hero-actions">
       <a href="https://github.com/teejay-ui" target="_blank" rel="noopener" class="btn btn-primary">
-        &#xe624; GitHub
+        GitHub
       </a>
       <a href="#projects" class="btn btn-secondary">View projects &darr;</a>
     </div>
@@ -440,13 +443,27 @@
 
       <div class="project-card">
         <div class="project-header">
+          <div class="project-icon-wrap">🕵️</div>
+          <span class="project-type">Blue team</span>
+        </div>
+        <div class="project-title">Web Server Compromise Investigation</div>
+        <p class="project-desc">Reconstructed a full attack chain from a network capture in Wireshark — SQL injection through a search parameter, database and table enumeration, brute-forced admin login, and a malicious file upload giving remote access. Written up as a full incident report with timeline, impact assessment, and remediation recommendations.</p>
+        <div class="project-status">
+          <span class="project-status-left"><span class="status-dot done"></span> Completed</span>
+          <a href="https://github.com/teejay-ui/cybersecurity-portfolio/blob/main/cyberdefenders-writeups/web-investigation-incident-report.md" target="_blank" rel="noopener" class="project-link">Read write-up →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
           <div class="project-icon-wrap">🖥️</div>
           <span class="project-type">Blue team</span>
         </div>
-        <div class="project-title">Home Lab Setup</div>
-        <p class="project-desc">Built a virtual network using VirtualBox with Kali Linux and Windows VMs. Practised Nmap scanning, firewall configuration, and log analysis in an isolated environment.</p>
+        <div class="project-title">Home Network Reconnaissance Report</div>
+        <p class="project-desc">Ran host discovery and service/OS enumeration scans with Nmap against a live home network. Identified an end-of-life Linux kernel and an unnecessarily exposed UPnP service on the router, with a written risk assessment and hardening recommendations.</p>
         <div class="project-status">
-          <span class="status-dot done"></span> Completed
+          <span class="project-status-left"><span class="status-dot done"></span> Completed</span>
+          <a href="https://github.com/teejay-ui/cybersecurity-portfolio/blob/main/home-lab/nmap-home-network-scan-report.md" target="_blank" rel="noopener" class="project-link">Read write-up →</a>
         </div>
       </div>
 
@@ -455,22 +472,10 @@
           <div class="project-icon-wrap">📝</div>
           <span class="project-type">Blue team</span>
         </div>
-        <div class="project-title">TryHackMe Write-ups</div>
-        <p class="project-desc">Completing rooms from the Pre-Security and SOC Level 1 learning paths. Publishing write-ups explaining tools used, commands run, and lessons learned per room.</p>
+        <div class="project-title">CyberDefenders / Blue Team Lab Write-ups</div>
+        <p class="project-desc">Working through free Blue Team Labs on CyberDefenders — network forensics, log analysis, and threat intel challenges. Publishing a write-up per lab explaining methodology, filters used, and findings.</p>
         <div class="project-status">
-          <span class="status-dot progress"></span> In progress
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon-wrap">🔍</div>
-          <span class="project-type">Both</span>
-        </div>
-        <div class="project-title">Nmap Scan Report</div>
-        <p class="project-desc">Network scans against lab VMs with documented open ports and services. Includes a one-page risk assessment with hardening recommendations.</p>
-        <div class="project-status">
-          <span class="status-dot planned"></span> Planned
+          <span class="project-status-left"><span class="status-dot progress"></span> In progress</span>
         </div>
       </div>
 
@@ -482,7 +487,7 @@
         <div class="project-title">Phishing Email Analysis</div>
         <p class="project-desc">Analysis of real-world phishing samples — examining headers, spoofed senders, suspicious links, and urgency tactics. Documents triage steps a SOC analyst would take.</p>
         <div class="project-status">
-          <span class="status-dot planned"></span> Planned
+          <span class="project-status-left"><span class="status-dot planned"></span> Planned</span>
         </div>
       </div>
 
@@ -494,19 +499,7 @@
         <div class="project-title">Password Cracking Demo</div>
         <p class="project-desc">Controlled lab exercise using John the Ripper and Hashcat against self-created test hashes. Documents the process and explains the real-world risk of weak passwords.</p>
         <div class="project-status">
-          <span class="status-dot planned"></span> Planned
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon-wrap">📊</div>
-          <span class="project-type">Blue team</span>
-        </div>
-        <div class="project-title">Log Analysis Mini-Project</div>
-        <p class="project-desc">Generated Windows Event Logs in the lab — mixing successful and failed logins. Manually flagged suspicious patterns and produced a short analyst-style report.</p>
-        <div class="project-status">
-          <span class="status-dot planned"></span> Planned
+          <span class="project-status-left"><span class="status-dot planned"></span> Planned</span>
         </div>
       </div>
 
@@ -518,7 +511,7 @@
         <div class="project-title">Incident Response Cheat Sheet</div>
         <p class="project-desc">One-page IR plan applying the standard PICERL framework to a fictional phishing scenario. Demonstrates process knowledge beyond just tooling.</p>
         <div class="project-status">
-          <span class="status-dot planned"></span> Planned
+          <span class="project-status-left"><span class="status-dot planned"></span> Planned</span>
         </div>
       </div>
 
@@ -530,6 +523,16 @@
     <div class="section-label">Skills</div>
     <div class="skills-grid">
       <div class="skill-group">
+        <div class="skill-group-title">Security &amp; blue team</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-check">✓</span> Wireshark / network traffic analysis</div>
+          <div class="skill-item"><span class="skill-check">✓</span> SQL injection identification</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Nmap / host &amp; service enumeration</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Incident timeline reconstruction</div>
+          <div class="skill-item"><span class="skill-check">✓</span> Kali Linux</div>
+        </div>
+      </div>
+      <div class="skill-group">
         <div class="skill-group-title">IT &amp; networking</div>
         <div class="skill-list">
           <div class="skill-item"><span class="skill-check">✓</span> Help desk / IT support</div>
@@ -539,20 +542,11 @@
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Security tools</div>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-check">✓</span> Kali Linux</div>
-          <div class="skill-item"><span class="skill-check">✓</span> Nmap</div>
-          <div class="skill-item"><span class="skill-check">✓</span> John the Ripper</div>
-          <div class="skill-item"><span class="skill-check">✓</span> Wireshark (learning)</div>
-        </div>
-      </div>
-      <div class="skill-group">
         <div class="skill-group-title">Development</div>
         <div class="skill-list">
           <div class="skill-item"><span class="skill-check">✓</span> Python</div>
           <div class="skill-item"><span class="skill-check">✓</span> Git &amp; GitHub</div>
-          <div class="skill-item"><span class="skill-check">✓</span> Bash scripting (learning)</div>
+          <div class="skill-item"><span class="skill-check">✓</span> REST APIs</div>
         </div>
       </div>
     </div>
@@ -574,7 +568,7 @@
         <div class="cert-icon-wrap">🔐</div>
         <div class="cert-info">
           <div class="cert-name">Google Cybersecurity Certificate</div>
-          <div class="cert-sub">Google / Coursera — audit in progress</div>
+          <div class="cert-sub">Google / Coursera</div>
         </div>
         <span class="cert-badge badge-progress">In progress</span>
       </div>
@@ -582,9 +576,9 @@
         <div class="cert-icon-wrap">🎯</div>
         <div class="cert-info">
           <div class="cert-name">CompTIA Security+ (SY0-701)</div>
-          <div class="cert-sub">Studying via Professor Messer</div>
+          <div class="cert-sub">Self-study via Professor Messer</div>
         </div>
-        <span class="cert-badge badge-planned">Planned</span>
+        <span class="cert-badge badge-progress">In progress</span>
       </div>
     </div>
   </section>
@@ -601,20 +595,22 @@
         </div>
         <span class="contact-arrow">→</span>
       </a>
-      <div class="contact-item placeholder">
+      <a href="https://linkedin.com/in/tumba-ii-kongolo" target="_blank" rel="noopener" class="contact-item">
         <div class="contact-icon">💼</div>
         <div class="contact-text">
           <div class="contact-label">LinkedIn</div>
-          <div class="contact-val">Add your LinkedIn URL</div>
+          <div class="contact-val">linkedin.com/in/tumba-ii-kongolo</div>
         </div>
-      </div>
-      <div class="contact-item placeholder">
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="mailto:michealkongolo24@gmail.com" class="contact-item">
         <div class="contact-icon">✉️</div>
         <div class="contact-text">
           <div class="contact-label">Email</div>
-          <div class="contact-val">Add your email address</div>
+          <div class="contact-val">michealkongolo24@gmail.com</div>
         </div>
-      </div>
+        <span class="contact-arrow">→</span>
+      </a>
     </div>
   </section>
 
